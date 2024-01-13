@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: og-ec2
     steps:
       - name: Pull image from Docker Hub
         run: docker pull sgx30/og-ec2
