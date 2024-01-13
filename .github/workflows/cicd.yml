@@ -23,6 +23,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Pull image from Docker Hub
-        run: docker pull sgx30/og-ec2:latest
+        run: docker pull -a sgx30/og-ec2:latest
       - name: Run Docker Container
         run: docker run -d -p 3000:80 --name ogContainer sgx30/og-ec2
