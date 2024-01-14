@@ -22,7 +22,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Pull image from Docker Hub
+      - name: Pull Image from Docker Hub
         run: docker image pull sgx30/og-ec2:latest
       - name: Run Docker Container
         run: docker run -d -p 3000:80 --name ogContainer sgx30/og-ec2
