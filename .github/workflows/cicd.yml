@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Pull image from Docker Hub
         run: docker image pull -a sgx30/og-ec2:latest
