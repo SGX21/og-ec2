@@ -17,9 +17,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::814207925733:role/github.to.aws.oicd
+          role-session-name: samplerolesession
           aws-region: us-east-1
 
       - name: Login to Docker Hub
