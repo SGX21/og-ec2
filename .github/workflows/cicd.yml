@@ -25,7 +25,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:secretsmanager:us-east-1:814207925733:secret:og-ec2-TqzZ8G
+          role-to-assume: arn:aws:iam::814207925733:role/og-ec2
           aws-region: us-east-1
       - name: Pull Image from Docker Hub
         run: docker image pull sgx30/og-ec2:latest
