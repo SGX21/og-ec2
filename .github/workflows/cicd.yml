@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::814207925733:role/github.to.aws.oicd
+          role-to-assume: arn:aws:iam::814207925733:role/GithubWorkflow
           role-session-name: samplerolesession
           aws-region: us-east-1
 
