@@ -24,10 +24,9 @@ jobs:
           aws-region: us-east-1
 
       - name: Get Secrets from AWS Secrets Manager
-        id: get-secrets
-        uses: aws-actions/secrets-manager-get-secret-value@v1
+        uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
-          secret-id: og-ec2
+          secret-ids: og-ec2
 
       - name: Debug
         run: |
