@@ -23,7 +23,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Get Secrets from AWS Secrets Manager
+      - name: Get Secrets from AWS Secret Manager
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: og-ec2
