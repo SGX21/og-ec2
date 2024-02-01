@@ -26,22 +26,21 @@ jobs:
       - name: Get Secrets from AWS Secret Manager
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
-          secret-ids: og-ec2
+          secret-ids: |
+            DOCKER_SECRETS,arn:aws:secretsmanager:us-east-1:814207925733:secret:og-ec2-TqzZ8G
+          parse-json-secrets: true
 
       - name: Debug
         run: |
           echo "Secrets Output: ${{ steps.get-aws-secrets.outputs.secret }}"
-          echo "Error Output: ${{ steps.get-secrets.outputs.error }}"
+          echo "Error Output: ${{ steps.get-aws-secrets.outputs.error }}"
 
       - name: Check for Prod
-        env:
-          DOCKER_USERNAME: ${{ steps.get-aws-secrets.outputs.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ steps.get-aws-secrets.outputs.DOCKER_PASSWORD }}
         run: |
-          echo "Secret value: $DOCKER_USERNAME"
+          echo "Docker Username: $DOCKER_SECRETS_DOCKER_USERNAME"
 
       - name: Login to Docker Hub
-        run: docker login -u ${{ env.DOCKER_USERNAME }} -p ${{ env.DOCKER_PASSWORD }}
+        run: docker login -u ${{ env.DOCKER_SECRETS_DOCKER_USERNAME }} -p ${{ env.DOCKER_SECRETS_DOCKER_PASSWORD }}
 
       - name: Build Docker image
         run: docker build -t sgx30/og-ec2 .
@@ -56,4 +55,4 @@ jobs:
       - name: Pull Image from Docker Hub
         run: docker image pull sgx30/og-ec2:latest
       - name: Run Docker Container
-        run: docker run -d -p 3000:80 --name ogContainer sgx30/og-ec2
+        run: docker run -d -p 3000:80 --name ogContainer sgx30/og-ec2```
