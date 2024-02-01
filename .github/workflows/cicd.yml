@@ -23,6 +23,23 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Get Secrets from AWS Secrets Manager
+        id: get-secrets
+        uses: aws-actions/secrets-manager-get-secret-value@v1
+        with:
+          secret-id: og-ec2
+
+      - name: Debug
+        run: |
+          echo "Secrets Output: ${{ steps.get-secrets.outputs.secret }}"
+          echo "Error Output: ${{ steps.get-secrets.outputs.error }}"
+
+      - name: Check for Prod
+        env:
+          MY_SECRET: ${{ steps.get-secrets.outputs.secretValue }}
+        run: |
+          echo "Secret value: $MY_SECRET"
+
       - name: Login to Docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
