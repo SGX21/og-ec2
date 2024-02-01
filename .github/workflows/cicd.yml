@@ -35,7 +35,7 @@ jobs:
 
       - name: Check for Prod
         env:
-          MY_SECRET: ${{ steps.get-secrets.outputs.secretValue }}
+          DOCKER_USERNAME: ${{ steps.get-secrets.outputs.secretValue }}
         run: |
           echo "Secret value: $MY_SECRET"
 
