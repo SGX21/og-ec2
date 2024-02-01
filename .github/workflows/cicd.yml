@@ -31,14 +31,14 @@ jobs:
       - name: Debug
         run: |
           echo "Secrets Output: ${{ steps.get-aws-secrets.outputs.secret }}"
-          echo "Error Output: ${{ steps.get-aws-secrets.outputs.error }}"
+          echo "Error Output: ${{ steps.get-secrets.outputs.error }}"
 
       - name: Check for Prod
         env:
           DOCKER_USERNAME: ${{ steps.get-aws-secrets.outputs.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ steps.get-aws-secrets.outputs.DOCKER_PASSWORD }}
         run: |
-          echo `Secret value: $DOCKER_USERNAME`
+          echo "Secret value: $DOCKER_USERNAME"
 
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
